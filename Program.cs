@@ -36,5 +36,17 @@ namespace HttpNewsPAT
             string responseFromServer = new StreamReader(response.GetResponseStream()).ReadToEnd();
             Console.WriteLine(responseFromServer);
         }
+        public static void GetContent(Cookie Token)
+        {
+            string url = "";
+            Debug.WriteLine($"Выполняем запрос: {url}");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.CookieContainer = new CookieContainer();
+            request.CookieContainer.Add(Token);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Debug.WriteLine($"Статус выполнения: {response.StatusCode}");
+            string responseFromServer = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            Console.WriteLine(responseFromServer);
+        }
     }
 }
